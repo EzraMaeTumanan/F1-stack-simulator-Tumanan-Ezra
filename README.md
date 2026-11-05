@@ -6,32 +6,34 @@ Section: BSIT WMT 4-2
 
 Original starter repository: https://github.com/Jackson-Soriano/f1-elec4-stack-simulator-starter.git
 
-Activity description: Pre-demo activity for ELEC 4. I cloned the Flask stack simulator starter, read through its files, and answered the reading activity. The TODOs remain unfinished until the demo.
+Activity description: Bonus topic (Weeks 12-13). I completed the Flask Stack Simulator (LIFO) and created a separate Flask Queue Simulator (FIFO) in the `queue-simulator` folder.
 
 ---
 
-# Flask Stack Simulator startup template
+# Flask Stack and Queue Simulators
 
-This is the unfinished repository for a pre-demo reading activity. Read `Flask_PreDemo_Reading_Activity.pdf` first.
+## Stack Simulator (root folder)
 
-## Before the demonstration
+Operations: Push, Pop, Peek, Clear (LIFO).
 
-1. Clone the repository URL supplied by your instructor.
-2. Open the cloned folder in VS Code.
-3. Open `templates/index.html` directly in a browser. This is a static preview.
-4. Click through the navigation to the contact placeholder.
-5. Read the HTML comments, app.py TODOs, and stack_model.py TODOs.
-6. Answer the reading worksheet. Do not complete the TODOs before the demonstration.
+```
+pip install -r requirements.txt
+python app.py          # http://127.0.0.1:5000
+```
+
+## Queue Simulator (`queue-simulator/`)
+
+Operations: Enqueue, Dequeue, Peek, Clear (FIFO). Front and Rear are labeled in the interface.
+
+```
+cd queue-simulator
+pip install -r requirements.txt
+python app.py          # http://127.0.0.1:5001
+```
 
 ## Files
 
-- app.py: Flask setup and route TODOs P1-P9.
-- stack_model.py: Stack method.
-- templates/index.html: standalone static simulator preview.
-- templates/contact.html: standalone placeholder page.
-- templates/base.html: standalone layout reference; inheritance is not active yet.
-- static/css/style.css: supplied appearance adapted for this preview.
-- static/js/ui.js: optional focus enhancement and a later effect TODO.
-- requirements.txt: Flask dependency only.
-
-During the demo, the instructor will convert static paths into url_for calls, connect form submission, introduce Jinja variables and loops, and connect Python stack operations. The three HTML files are intentionally independent before that conversion.
+- `app.py`: Flask routes (`/`, `/stack` or `/queue`, `/contact`) using the session.
+- `stack_model.py` / `queue_model.py`: the Stack and Queue classes (Python lists).
+- `templates/`: `base.html` layout, `index.html` simulator, `contact.html` placeholder (Jinja2).
+- `static/`: CSS and jQuery focus/peek effect.
