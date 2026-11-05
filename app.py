@@ -7,24 +7,23 @@ from flask import (Flask, flash, redirect, render_template, request,
 from stack_model import Stack
 
 app = Flask(__name__)
-# Short fictional values on localhost only; a random key is fine for this lesson.
 app.config['SECRET_KEY'] = secrets.token_hex(16)
 
-MAX_ITEMS = 20      # Push is refused once the stack holds this many items.
-MAX_REMOVED = 20    # Only the most recently removed values are kept.
-MAX_LENGTH = 24     # Maximum characters per value.
+MAX_ITEMS = 20
+MAX_REMOVED = 20
+MAX_LENGTH = 24
 
 
 @app.route('/')
 def index():
     stack = Stack(session.get('stack', []))
     popped = session.get('popped', [])
-    highlight = session.pop('peek', False)   # One-time flag set by Peek.
+    highlight = session.pop('peek', False)
     return render_template(
         'index.html',
-        items=list(reversed(stack.items)),   # Show the top of the stack first.
+        items=list(reversed(stack.items)),
         size=stack.size(),
-        popped=list(reversed(popped)),       # Most recently removed first.
+        popped=list(reversed(popped)),
         highlight=highlight and not stack.is_empty(),
     )
 
@@ -78,4 +77,4 @@ def contact():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)  # Local development only. Stop with Ctrl+C.
+    app.run(debug=True)
